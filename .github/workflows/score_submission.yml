@@ -78,7 +78,7 @@ jobs:
       # 7 Decrypt submission
       - name: Decrypt submission
         env:
-          PRIVATE_KEY: ${{ secrets.DECRYPT_KEY }}
+          PRIVATE_KEY: ${{ secrets.SUBMISSION_PRIVATE_KEY }}
         run: |
           # 1. Create the private key file
           cat <<EOF > extra/private_key.pem

@@ -5,7 +5,7 @@ from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_sc
 def main(pred_path, label_path, score_path):
     labels = pd.read_csv(label_path).sort_values("id")
     preds = pd.read_csv(pred_path).sort_values("id")
-    labels.rename(columns={'label': 'y_true'}, inplace=True)
+    labels.rename(columns={'y_pred': 'y_true'}, inplace=True)
     merged = labels.merge(preds, on="id", how="inner")
     
     if len(merged) != len(labels):

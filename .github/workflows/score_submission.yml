@@ -100,15 +100,16 @@ jobs:
         run: |
           python competition/validate_submission.py \
             submissions/predictions.csv \
-            data/public/test_ids.csv \
             submissions/metadata.json
 
       # 9 Clone private labels repo
-      - name: Clone private labels repo
+      - name: Get labels
         env:
-          EVAL_TOKEN: ${{ secrets.EVAL_TOKEN }}
+          PRIVATE_KEY: ${{ secrets.TEST_LABELS_CSV }}
         run: |
-          git clone https://${EVAL_TOKEN}@github.com/abdksm/PROVEN-GNN-private.git private_labels
+          cat <<EOF > test_labels.csv
+          $TEST_LABELS_CSV
+          EOF
 
 
       # 10 Run scoring
@@ -116,7 +117,7 @@ jobs:
         run: |
           python competition/evaluate.py \
             submissions/predictions.csv \
-            private_labels/test_labels.csv \
+            test_labels.csv \
             score.txt
           cp score.txt /tmp/score.txt
 

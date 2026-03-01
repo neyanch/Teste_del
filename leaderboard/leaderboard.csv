@@ -1,2 +1,2 @@
 username,timestamp_utc,team,run_id,type,model,macro_f1,accuracy,precision,recall
-
+RosePY,2026-03-01 05:56:48 UTC,team2,run_001,human+llm,GAT,0.581538,0.581699,0.597222,0.551282
